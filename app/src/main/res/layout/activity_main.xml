@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/MAIN_PADDING">
+
+    <TextView
+        android:id="@+id/databaseColsTextView"
+        style="@style/MAIN_TEXT_STYLE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="@string/databaseCols" />
+
+    <ScrollView
+        android:id="@+id/databaseValuesHolderTextViewHolder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/databaseDummyValuesInsertsButton"
+        android:layout_below="@id/databaseColsTextView"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/databaseValuesHolderTextView"
+            style="@style/MAIN_TEXT_STYLE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="1 | Book1 | 15.65$ | 37 | Name | 123456789" />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/databaseDummyValuesInsertsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/insertDummyValues" />
+</RelativeLayout>

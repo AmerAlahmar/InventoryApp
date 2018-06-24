@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="MAIN_PADDING">16dp</dimen>
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Inventory App</string>
+    <string name="insertDummyValues">Insert Dummy Values</string>
+    <string name="databaseCols">Id | Name | Price | Quantity | S Name | S Number</string>
+</resources>
