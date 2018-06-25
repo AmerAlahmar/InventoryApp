@@ -56,38 +56,42 @@ public class Book {
         String supplierName;
         String supplierPhoneNumber;
         ArrayList<Book> books = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            int indexOfId = cursor.getColumnIndex(InventoryContract.BooksEntry._ID);
-            int indexOfName = cursor.getColumnIndex(InventoryContract.BooksEntry.COLUMN_BOOK_NAME);
-            int indexOfPrice = cursor.getColumnIndex(InventoryContract.BooksEntry.COLUMN_BOOK_PRICE);
-            int indexOfQuantity = cursor.getColumnIndex(InventoryContract.BooksEntry.COLUMN_BOOK_QUANTITY);
-            int indexOfSupplierName = cursor.getColumnIndex(InventoryContract.BooksEntry.COLUMN_BOOK_SUPPLIER_NAME);
-            int indexOfSupplierNumber = cursor.getColumnIndex(InventoryContract.BooksEntry.COLUMN_BOOK_SUPPLIER_PHONE_NUMBER);
-            if (indexOfId == -1)
-                id = UNKNOWN_INT_VALUE;
-            else
-                id = cursor.getLong(indexOfId);
-            if (indexOfName == -1)
-                name = UNKNOWN_STRING_VALUE;
-            else
-                name = cursor.getString(indexOfName);
-            if (indexOfPrice == -1)
-                price = UNKNOWN_FLOAT_VALUE;
-            else
-                price = cursor.getFloat(indexOfPrice);
-            if (indexOfQuantity == -1)
-                quantity = UNKNOWN_INT_VALUE;
-            else
-                quantity = cursor.getInt(indexOfQuantity);
-            if (indexOfSupplierName == -1)
-                supplierName = UNKNOWN_STRING_VALUE;
-            else
-                supplierName = cursor.getString(indexOfSupplierName);
-            if (indexOfSupplierNumber == -1)
-                supplierPhoneNumber = UNKNOWN_STRING_VALUE;
-            else
-                supplierPhoneNumber = cursor.getString(indexOfSupplierNumber);
-            books.add(new Book(id, name, price, quantity, supplierName, supplierPhoneNumber));
+        try {
+            while (cursor.moveToNext()) {
+                int indexOfId = cursor.getColumnIndex(InventoryContract.BooksEntry._ID);
+                int indexOfName = cursor.getColumnIndex(InventoryContract.BooksEntry.COLUMN_BOOK_NAME);
+                int indexOfPrice = cursor.getColumnIndex(InventoryContract.BooksEntry.COLUMN_BOOK_PRICE);
+                int indexOfQuantity = cursor.getColumnIndex(InventoryContract.BooksEntry.COLUMN_BOOK_QUANTITY);
+                int indexOfSupplierName = cursor.getColumnIndex(InventoryContract.BooksEntry.COLUMN_BOOK_SUPPLIER_NAME);
+                int indexOfSupplierNumber = cursor.getColumnIndex(InventoryContract.BooksEntry.COLUMN_BOOK_SUPPLIER_PHONE_NUMBER);
+                if (indexOfId == -1)
+                    id = UNKNOWN_INT_VALUE;
+                else
+                    id = cursor.getLong(indexOfId);
+                if (indexOfName == -1)
+                    name = UNKNOWN_STRING_VALUE;
+                else
+                    name = cursor.getString(indexOfName);
+                if (indexOfPrice == -1)
+                    price = UNKNOWN_FLOAT_VALUE;
+                else
+                    price = cursor.getFloat(indexOfPrice);
+                if (indexOfQuantity == -1)
+                    quantity = UNKNOWN_INT_VALUE;
+                else
+                    quantity = cursor.getInt(indexOfQuantity);
+                if (indexOfSupplierName == -1)
+                    supplierName = UNKNOWN_STRING_VALUE;
+                else
+                    supplierName = cursor.getString(indexOfSupplierName);
+                if (indexOfSupplierNumber == -1)
+                    supplierPhoneNumber = UNKNOWN_STRING_VALUE;
+                else
+                    supplierPhoneNumber = cursor.getString(indexOfSupplierNumber);
+                books.add(new Book(id, name, price, quantity, supplierName, supplierPhoneNumber));
+            }
+        }finally {
+            cursor.close();
         }
         return books;
     }

@@ -44,8 +44,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private ArrayList<Book> getAllBooksFromDb() {
-        Cursor cursor = InventoryContract.BooksEntry.getAllBooks(readableDatabase);
-        return Book.extractBooksFromCursor(cursor);
+        Cursor cursor = null;
+        ArrayList<Book> books;
+        try {
+            cursor = InventoryContract.BooksEntry.getAllBooks(readableDatabase);
+            books = Book.extractBooksFromCursor(cursor);
+        }finally {
+            cursor.close();
+        }
+        return books;
     }
 
     private void displayAllBooks(ArrayList<Book> books) {
@@ -67,8 +74,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayNewInsertedVales(long rowId) {
-        Cursor cursor = InventoryContract.BooksEntry.getBookById(rowId, readableDatabase);
-        ArrayList<Book> tempBooks = Book.extractBooksFromCursor(cursor);
+        ArrayList<Book> tempBooks;
+        Cursor cursor = null;
+        try{
+            cursor = InventoryContract.BooksEntry.getBookById(rowId, readableDatabase);
+            tempBooks = Book.extractBooksFromCursor(cursor);
+        }finally {
+            cursor.close();
+        }
         if (tempBooks == null || tempBooks.isEmpty())
             return;
         Book nextBook = tempBooks.get(0);
